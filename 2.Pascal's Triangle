@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.* ;
+import java.util.ArrayList;
+public class Solution {
+	public static ArrayList<ArrayList<Long>> printPascal(int n) {
+		ArrayList<ArrayList<Long>> ans = new ArrayList<>();
+		ArrayList<Long> list1 = new ArrayList<>();
+		list1.add(1L);
+    
+		ArrayList<Long> list2;
+		while(ans.size() != n-1)
+		{
+        list2 = new ArrayList<>();
+        for(int i=0; i<list1.size(); i++)
+        {
+            if(i==0)
+              list2.add(list1.get(i));
+
+            if(i==list1.size()-1)
+            {
+                list2.add(list1.get(i));
+                break;
+            }
+
+            Long a = list1.get(i);
+            Long b = list1.get(i+1);
+            list2.add(a+b);
+        }			
+
+        ans.add(list2);
+        //update list
+        list1.clear();
+        list1.addAll(list2);
+		}
+		list1.clear();
+		list1.add(1L);
+		ans.add(0,list1);
+		return ans;
+	}
+}
