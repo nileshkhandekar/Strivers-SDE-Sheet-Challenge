@@ -1,0 +1,40 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        //Take transpose of matrix
+        for(int i=1; i<matrix.length; i++)
+        {
+            for(int j=0; j<matrix[0].length; j++)
+            {
+                if(i == j)
+                    break;
+                swap(matrix,i,j);
+            }    
+        }
+
+        //Reverse all rows of transpose matrix to get 90 degree rotated matrix
+        for(int i=0; i<matrix.length; i++)
+            reverseRow(matrix,i);
+    }
+
+    public void swap(int matrix[][],int i,int j)
+    {
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[j][i];
+        matrix[j][i] = temp;
+    }
+
+    public void reverseRow(int matrix[][],int k)
+    {
+        int i=0,j=matrix[0].length-1;
+        while(i < j)
+        {
+            int temp = matrix[k][i];
+            matrix[k][i] = matrix[k][j];
+            matrix[k][j] = temp;
+
+            i++;
+            j--;
+        }
+    }
+
+}
