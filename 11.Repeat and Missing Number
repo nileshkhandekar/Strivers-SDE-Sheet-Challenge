@@ -1,0 +1,40 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0; i<arr.size(); i++)
+        {
+            if(map.containsKey(arr.get(i)))
+                map.put(arr.get(i),map.get(arr.get(i))+1);
+            else
+                map.put(arr.get(i),1);
+        }
+
+        int notPresent = -1;
+        int repeating = -1;
+
+        for(int i=1; i<=n; i++)
+        {
+            if(!map.containsKey(i))
+                notPresent = i;
+        }
+
+        for(Map.Entry<Integer, Integer> e:map.entrySet())
+        {    
+            if(e.getValue() == 2)
+            {
+                repeating = e.getKey();
+                break;
+            }
+        }
+
+        int ans[] = new int[2];
+        ans[0] = notPresent;
+        ans[1] = repeating;
+
+        return ans;
+    }
+}
